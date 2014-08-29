@@ -10,3 +10,5 @@ Please visit the Wiki How-to page for configuring this widget in the CMV.
 
 
 ![Alt text](Screenshot-1.png?raw=true "Layer Swapper Screenshot")
+
+![Alt text](Screenshot-2.png?raw=true "Layer Swapper Screenshot 2")
