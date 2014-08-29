@@ -1,7 +1,7 @@
 cmv-layer-swapper
-v1.0
 =================
 
+v1.0
 Layer swapper widget for [David Spriggs Configurable Map Viewer](https://github.com/DavidSpriggs/ConfigurableViewerJSAPI) 
 
 Widget designed to allow swapping of a configurable list of layers.  Most obvious use case is flipping thru historical imagery.  Works best for layers
