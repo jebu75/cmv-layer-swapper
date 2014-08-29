@@ -1,0 +1,59 @@
+<div class="gisLayerSwapperDijit">
+    <div class="formContainer">
+
+        <div data-dojo-type="dijit/form/Form" data-dojo-attach-point="layerSwapperFormDijit">
+
+            <div class="layerSelectDom">
+
+                <div class="layerSelect">
+                    <label data-dojo-attach-point="layerSelectLabel">Select layer:</label>
+                    <br />
+                    <input type="select"
+                           disabled
+                           data-dojo-type="dijit/form/FilteringSelect"
+                           data-dojo-attach-point="layerSelectDijit"
+                           data-dojo-props="name:'label', autoComplete:true,required:false,searchAttr:'label',class:'layerSelectInput'"
+                           data-dojo-attach-event="onChange:_onLayerChange" />
+
+                    <span class="layerControlUpdate">
+                        <i data-dojo-attach-point="layerUpdateNode"
+                           class="fa fa-refresh fa-spin layerControlUpdateIcon"
+                           style="display:none;"></i>
+                    </span>
+                </div>
+
+
+            </div>
+
+            <div data-dojo-attach-point="layerFadeDom"
+                    data-dojo-props="class:'layerFadeContainer'">
+
+                <div data-dojo-attach-point="layerFadeSlider"
+                     data-dojo-type="dijit/form/HorizontalSlider"
+                     minimum="0"
+                     maximum="1"
+                     data-dojo-props="value:1.0"
+                     discreetValues="11"
+                     intermediateChanges="true"
+                     showButtons="false"
+                     data-dojo-attach-event="onChange:_onLayerFaderChange">
+
+                    <div data-dojo-type="dijit/form/HorizontalRule"
+                         data-dojo-props="class:'layerFaderHr'"
+                         container="bottomDecoration"
+                         count=11 />
+
+                    <ol data-dojo-type="dijit/form/HorizontalRuleLabels"
+                        container="bottomDecoration"
+                        style="height:1em;font-size:75%;color:gray;">
+                        <li>0%</li>
+                        <li>50%</li>
+                        <li>100%</li>
+                    </ol>
+
+                     </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+.gisLayerSwapperDijit {
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.gisLayerSwapperDijit label {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.gisLayerSwapperDijit .layerSelectDom {
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+.gisLayerSwapperDijit .layerSelect {
+    display: inline-block;
+    width: 100%
+}
+
+.gisLayerSwapperDijit .layerSelectInput {
+    width: 250px;
+}
+
+.gisLayerSwapperDijit .layerControlUpdate {
+    width: 50px;
+    height: 40px;
+    line-height: 15px;
+    text-align: center;
+    padding-right: 5px;
+    margin-left:10px;
+}
+
+.gisLayerSwapperDijit .layerFaderHr {
+    //margin-top: 1px;
+}
