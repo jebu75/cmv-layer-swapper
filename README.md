@@ -1,47 +1,25 @@
-cmv-layer-swapper
-v1.0
-=================
+# cmv-contrib-widgets
 
-Layer swapper widget for David Spriggs CMV 
+User contributed widgets for the [Configurable Map Viewer (CMV)](https://github.com/DavidSpriggs/ConfigurableViewerJSAPI) project.
 
-Widget designed to allow swapping of a configurable list of layers.  Most obvious use case is flipping thru historical imagery.  Works best for layers
-which should be mutually exclusive of each other.  Also allows fading of the selected layer via a slider control.
+Have a widget to add? See [Contributing](https://github.com/DavidSpriggs/cmv-contrib-widgets#contributing).
 
-Please visit the Wiki How-to page for configuring this widget in the CMV.
+## Widgets
 
+| Widget | Description |
+| :----: | ----------- |
+| [Identify Panel](https://github.com/dougrchamberlain/IdentifyPanel) | TitlePane widget to allow identify results to be viewed on the side instead of in a popup/infowindow. |
+| [Navigation Toolbar](https://github.com/friendde/ArcGIS_JS_NavigationTools) | A toolbar for simple map navigation including previous and next extent tracker. |
 
-![Alt text](Screenshot-1.png?raw=true "Layer Swapper Screenshot")
+## Contributing
 
-![Alt text](Screenshot-2.png?raw=true "Layer Swapper Screenshot 2")
+To list your widget, simply add a row to the above widgets table with a link to your repo and description via a Pull Request.
 
+Please follow these guidelines:
 
-To configure the in your project
-
-1. Copy the LayerSwapper directory and LayerSwapper.js file into your viewer/js/gis/dijit directory
-2. Add the following to your CMV viewer config file
-
-```
-layerSwapper: {
-    include: true,
-    id: 'layerSwapper',
-    type: 'titlePane',
-    title: 'Historical Imagery',
-    path: 'gis/dijit/LayerSwapper',
-    open: true,
-    options: {
-        map: true,
-        layerInfos: [
-            {
-                'label': '1950', //name of layer in selector
-                'url': 'http://your-server.com/arcgis/rest/services/your-service/MapServer', //url to dynamic or tiled service
-                'type': 'tiled' //type of layer, either 'tile' or 'dynamic'
-            }
-        ]
-    }
-}
-```
-
-If you have many layers, it is suggested to use a config file.  Simply change the 'options' parameter to point to your config file:
-```
-options: 'config/layerSwapper'
-```
+1. In your repo include a `README.md` with:
+  1. an example configuration object.
+  2. additional documentation as needed.
+  3. include the CMV version the widget built with.
+2. Make sure to include a screenshot in your `README.md` of your widget in action.
+3. Make sure your code is lint free. Use the included `.jshintrc` file for linting.
