@@ -1,4 +1,5 @@
 cmv-layer-swapper
+v1.0
 =================
 
 Layer swapper widget for David Spriggs CMV 
