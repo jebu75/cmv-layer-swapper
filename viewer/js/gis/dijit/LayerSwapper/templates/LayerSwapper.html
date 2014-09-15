@@ -1,59 +1,106 @@
 <div class="gisLayerSwapperDijit">
     <div class="formContainer">
 
-        <div data-dojo-type="dijit/form/Form" data-dojo-attach-point="layerSwapperFormDijit">
+        <ul class="list-unstyled">
 
-            <div class="layerSelectDom">
+            <li>
+                <div class="layerSelectDom">
 
-                <div class="layerSelect">
-                    <label data-dojo-attach-point="layerSelectLabel">Select layer:</label>
+                    <div class="layerSelect">
+                        <label data-dojo-attach-point="layerSelectLabel">Select layer:</label>
+
+                        <span class="layerControlUpdate">
+                            <i data-dojo-attach-point="layerUpdateNode"
+                               class="fa fa-refresh fa-spin layerControlUpdateIcon"></i>
+                        </span>
+                        <br />
+                        <input type="select"
+                               disabled
+                               data-dojo-type="dijit/form/FilteringSelect"
+                               data-dojo-attach-point="layerSelectDijit"
+                               data-dojo-props="name:'label', autoComplete:true,required:false,searchAttr:'label',class:'layerSelectInput'"
+                               data-dojo-attach-event="onChange:onLayerChange" />
+
+
+
+                    </div>
+
+
+                </div>
+            </li>
+
+            <li>
+
+                <div class="layerFadeDom">
+
+                    <label>Adjust transparency:</label>
                     <br />
-                    <input type="select"
-                           disabled
-                           data-dojo-type="dijit/form/FilteringSelect"
-                           data-dojo-attach-point="layerSelectDijit"
-                           data-dojo-props="name:'label', autoComplete:true,required:false,searchAttr:'label',class:'layerSelectInput'"
-                           data-dojo-attach-event="onChange:_onLayerChange" />
+                    <div data-dojo-attach-point="layerFadeSlider"
+                         data-dojo-type="dijit/form/HorizontalSlider"
+                         minimum="0"
+                         maximum="1"
+                         data-dojo-props="value:1.0"
+                         discreetValues="11"
+                         intermediateChanges="true"
+                         showButtons="false"
+                         data-dojo-attach-event="onChange:onLayerFaderChange">
 
-                    <span class="layerControlUpdate">
-                        <i data-dojo-attach-point="layerUpdateNode"
-                           class="fa fa-refresh fa-spin layerControlUpdateIcon"
-                           style="display:none;"></i>
-                    </span>
+                        <div data-dojo-type="dijit/form/HorizontalRule"
+                             data-dojo-props="class:'layerFaderHr'"
+                             container="bottomDecoration"
+                             count=11 />
+
+                        <ol data-dojo-type="dijit/form/HorizontalRuleLabels"
+                            container="bottomDecoration"
+                            style="height:1em;font-size:75%;color:gray;">
+                            <li>0%</li>
+                            <li>50%</li>
+                            <li>100%</li>
+                        </ol>
+
+                    </div>
                 </div>
 
+            </li>
 
-            </div>
+            <li>
 
-            <div data-dojo-attach-point="layerFadeDom"
-                    data-dojo-props="class:'layerFadeContainer'">
+                <div class="layerSwipeDom">
 
-                <div data-dojo-attach-point="layerFadeSlider"
-                     data-dojo-type="dijit/form/HorizontalSlider"
-                     minimum="0"
-                     maximum="1"
-                     data-dojo-props="value:1.0"
-                     discreetValues="11"
-                     intermediateChanges="true"
-                     showButtons="false"
-                     data-dojo-attach-event="onChange:_onLayerFaderChange">
+                    <div class="layerSelect">
+                        <label>Layer swipe:</label>
+                        <br />
+                        <select name="layerSwipeTypeSelect"
+                                data-dojo-type="dijit/form/Select"
+                                data-dojo-props="class: 'layerSwipeSelect'"
+                                data-dojo-attach-point="layerSwipeTypeSelect"
+                                data-dojo-attach-event="onChange:createLayerSwipeWidget">
 
-                    <div data-dojo-type="dijit/form/HorizontalRule"
-                         data-dojo-props="class:'layerFaderHr'"
-                         container="bottomDecoration"
-                         count=11 />
+                            <option value="none" selected="selected">None</option>
+                            <option value="horizontal" >Horizontal</option>
+                            <option value="vertical">Vertical</option>
+                            <option value="scope">Scope</option>
 
-                    <ol data-dojo-type="dijit/form/HorizontalRuleLabels"
-                        container="bottomDecoration"
-                        style="height:1em;font-size:75%;color:gray;">
-                        <li>0%</li>
-                        <li>50%</li>
-                        <li>100%</li>
-                    </ol>
+                        </select>
+                    </div>
 
-                     </div>
-            </div>
+                </div>
 
-        </div>
+            </li>
+
+            <li>
+
+                <div data-dojo-type="dijit.form.Button"
+                     data-dojo-props="class:'resetButton'"
+                     data-dojo-attach-event="onClick:reset"
+                     data-dojo-attach-point="clearButtonDijit">
+                    Reset
+                    <i class="fa fa-refresh fa-fw resetIcon"></i>
+                </div>
+
+            </li>
+
+        </ul>
+
     </div>
 </div>

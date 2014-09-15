@@ -8,16 +8,38 @@ define ( [
             'dijit/form/HorizontalSlider',
             'dijit/form/HorizontalRule',
             'dijit/form/HorizontalRuleLabels',
+            'dijit/form/Select',
             'dojo/_base/array',
             'dojo/_base/lang',
+            'dojo/topic',
             'dojo/store/Memory',
             'dojo/dom-style',
+            'esri/dijit/LayerSwipe',
             'esri/layers/ArcGISDynamicMapServiceLayer',
             'esri/layers/ArcGISTiledMapServiceLayer',
             'dojo/text!./LayerSwapper/templates/LayerSwapper.html',
             'xstyle/css!./LayerSwapper/css/LayerSwapper.css'
 
-         ], function ( declare, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, Form, FilteringSelect, HorizontalSlider, HorizontalRule, HorizontalRuleLabels, array, lang, Memory, domStyle, ArcGISDynamicMapServiceLayer, ArcGISTiledMapServiceLayer, LayerSwapperTemplate, css ) {
+         ], function ( declare,
+                       _WidgetBase,
+                       _TemplatedMixin,
+                       _WidgetsInTemplateMixin,
+                       Form,
+                       FilteringSelect,
+                       HorizontalSlider,
+                       HorizontalRule,
+                       HorizontalRuleLabels,
+                       Select,
+                       array,
+                       lang,
+                       topic,
+                       Memory,
+                       domStyle,
+                       LayerSwipe,
+                       ArcGISDynamicMapServiceLayer,
+                       ArcGISTiledMapServiceLayer,
+                       LayerSwapperTemplate,
+                       css ) {
 
              return declare ( [ _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin ], {
 
@@ -32,6 +54,8 @@ define ( [
                      dynamic: 'esri/layers/ArcGISDynamicMapServiceLayer',
                      tiled: 'esri/layers/ArcGISTiledMapServiceLayer'
                  },
+
+                 layerSwipe: null,
 
                  postCreate: function () {
                      this.inherited ( arguments );
@@ -60,7 +84,6 @@ define ( [
 
                          if ( queryLen > 0 ) {
                              var layerStore = new Memory( { data: this.layerInfos } );
-                             console.log( layerStore );
                              this.layerSelectDijit.set( 'store', layerStore );
                              this.layerSelectDijit.set( 'value', 0 );
                              this.layerSelectDijit.set( 'disabled', false );
@@ -68,10 +91,12 @@ define ( [
 
                      }) );
 
+                     this.layerSwipeDomNode = dojo.create( 'div', null, this.map.container, 'first' );
+
 
                  },
 
-                 _onLayerChange: function ( newIndex ) {
+                 onLayerChange: function ( newIndex ) {
 
                      var lyr, k= 0, queryLen=this.layerInfos.length;
 
@@ -81,6 +106,13 @@ define ( [
                              this._addLayer( lyr );
                          }
                          lyr.layer.show();
+
+                         topic.publish( 'googleAnalytics/events', {
+                             category: 'Custom Event',
+                             action: 'Visible Layer Change',
+                             label: this.title,
+                             value: lyr.label
+                         } );
                      }
 
                      for (k=1; k < queryLen; k++ ) {
@@ -90,6 +122,7 @@ define ( [
                          }
                      }
 
+                     this._resetLayerSwipe();
                  },
 
                  _addLayer: function ( layerInfo ) {
@@ -120,7 +153,7 @@ define ( [
 
                  },
 
-                 _onLayerFaderChange: function ( newValue ) {
+                 onLayerFaderChange: function ( newValue ) {
 
                      var lyr, k= 0, queryLen=this.layerInfos.length;
                      for (k=1; k < queryLen; k++ ) {
@@ -130,6 +163,77 @@ define ( [
                              lyr.layer.setOpacity( newValue );
                          }
                      }
+
+                 },
+
+                 createLayerSwipeWidget: function( newValue ) {
+
+                     if ( newValue === 'none' ) {
+
+                         console.log( 'disable swipe' );
+                         if ( this.layerSwipe ) {
+                             this.layerSwipe.disable();
+                         }
+                         return;
+
+                     } else {
+
+                         console.log('enable swipe' );
+                         if ( this.layerSwipe ) {
+                             this.layerSwipe.set( 'type', newValue );
+                             this.layerSwipe.set( 'layers', this._getLayerSwipeLayers() );
+                             this.layerSwipe.enable();
+                         } else {
+                             this.layerSwipe = this._createLayerSwipe();
+                         }
+                         return;
+
+                     }
+
+                 },
+
+                 _createLayerSwipe: function () {
+
+                     var swipeType = this.layerSwipeTypeSelect.get( 'value' );
+
+                     var layers = this._getLayerSwipeLayers();
+                     if ( layers.length === 0 ) {
+                         return;
+                     }
+
+                     var layerSwipe = new LayerSwipe( {
+                           type: swipeType,
+                           map: this.map,
+                           layers: layers
+                     }, this.layerSwipeDomNode );
+                     layerSwipe.startup();
+
+                     return layerSwipe;
+                 },
+
+                 _getLayerSwipeLayers: function () {
+
+                     var layers = [];
+                     array.forEach( this.layerInfos, function ( layerInfo ) {
+
+                         if ( layerInfo.layer ) {
+                             layers.push( layerInfo.layer );
+                         }
+
+                     }, this );
+
+                     return layers;
+                 },
+
+                 _resetLayerSwipe: function () {
+
+                     this.layerSwipeTypeSelect.set( 'value', 'none' );
+
+                 },
+
+                 reset: function () {
+
+                     this.layerSelectDijit.set( 'value', 0 );
 
                  }
 
