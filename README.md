@@ -26,7 +26,7 @@ To configure the in your project
 1. Copy the LayerSwapper directory and LayerSwapper.js file into your viewer/js/gis/dijit directory
 2. Add the following to your CMV viewer config file
 
-```
+```javascript
 layerSwapper: {
     include: true,
     id: 'layerSwapper',
@@ -48,6 +48,6 @@ layerSwapper: {
 ```
 
 If you have many layers, it is suggested to use a config file.  Simply change the 'options' parameter to point to your config file:
-```
+```javascript
 options: 'config/layerSwapper'
 ```
