@@ -6,31 +6,46 @@
 .gisLayerSwapperDijit label {
     font-weight: bold;
     margin-left: 5px;
+    display: inline;
 }
 
-.gisLayerSwapperDijit .layerSelectDom {
+.gisLayerSwapperDijit ul {
     width: 100%;
-    margin-bottom: 2em;
 }
 
-.gisLayerSwapperDijit .layerSelect {
-    display: inline-block;
-    width: 100%
+.gisLayerSwapperDijit ul li {
+    margin-bottom: 1em;
 }
 
-.gisLayerSwapperDijit .layerSelectInput {
-    width: 250px;
+.gisLayerSwapperDijit ul li:last-of-type {
+    text-align: right;
+}
+
+.gisLayerSwapperDijit .layerSelectDom .layerSelectInput {
+    width: 100%;
+}
+
+.gisLayerSwapperDijit .layerSwipeDom .layerSwipeSelect {
+    width: 100%;
+}
+
+.gisLayerSwapperDijit .layerSwipeDom .layerSwipeSelect .dijitStretch {
+    width: 100%;
+}
+
+.gisLayerSwapperDijit .resetIcon {
+    color: #adadad;
 }
 
 .gisLayerSwapperDijit .layerControlUpdate {
-    width: 50px;
-    height: 40px;
+    width: 40px;
     line-height: 15px;
     text-align: center;
-    padding-right: 5px;
+    padding-right: 0px;
     margin-left:10px;
+    float: right;
 }
 
-.gisLayerSwapperDijit .layerFaderHr {
-    //margin-top: 1px;
+.gisLayerSwapperDijit .layerControlUpdate .layerControlUpdateIcon {
+    display: none;
 }
