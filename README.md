@@ -1,19 +1,25 @@
 cmv-layer-swapper
 =================
 
-v1.1
+v1.2
 Layer swapper widget for [David Spriggs Configurable Map Viewer](https://github.com/DavidSpriggs/ConfigurableViewerJSAPI) 
 
 Widget designed to allow swapping of a configurable list of layers.  Most obvious use case is flipping thru historical imagery.  Works best for layers
 which should be mutually exclusive of each other.  Also allows fading of the selected layer via a slider control.
 
-Configuration details below.
+New in this version:
+Added esri layerSwipe widget to allow the displayed layer to be swiped
 
+
+![Alt text](layerswapper-with-swipe-1.png?raw=true "Layer Swapper Screenshot - showing 'scope' swipe")
+
+![Alt text](layerswapper-with-swipe-1.png?raw=true "Layer Swapper Screenshot 2 - showing 'vertical' swipe")
 
 ![Alt text](Screenshot-1.png?raw=true "Layer Swapper Screenshot")
 
 ![Alt text](Screenshot-2.png?raw=true "Layer Swapper Screenshot 2")
 
+Configuration details below.
 
 To configure the in your project
 
