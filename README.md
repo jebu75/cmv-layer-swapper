@@ -14,7 +14,7 @@ New in this version:
 
 ![Alt text](layerswapper-with-swipe-1.png?raw=true "Layer Swapper Screenshot - showing 'scope' swipe")
 
-![Alt text](layerswapper-with-swipe-1.png?raw=true "Layer Swapper Screenshot 2 - showing 'vertical' swipe")
+![Alt text](layerswapper-with-swipe-2.png?raw=true "Layer Swapper Screenshot 2 - showing 'vertical' swipe")
 
 ![Alt text](Screenshot-1.png?raw=true "Layer Swapper Screenshot")
 
